@@ -330,10 +330,41 @@ else:
     community_sizes = [len(c) for c in partitions]
     # Sort the community sizes in descending order
     community_sizes.sort(reverse=True)
+    # find the most famous artist in each community
+    most_famous_artists = []
+    most_famous_countries = []
+    country_count = {}
+
+    for community in partitions:
+        max_popularity = 0
+        most_famous_artist = None
+        most_famous_country = None
+        for artist in community:
+            if 'popularity' in GCC.nodes[artist] and GCC.nodes[artist]['popularity'] > max_popularity:
+                max_popularity = GCC.nodes[artist]['popularity']
+                most_famous_artist = GCC.nodes[artist]['name']
+
+            # find the most famous country in each community
+            if 'chart_hits' in GCC.nodes[artist] and GCC.nodes[artist]['chart_hits'] != None:
+                charts = GCC.nodes[artist]['chart_hits']
+                if len(charts) > 0:
+                    hits_list = ast.literal_eval(GCC.nodes[artist]['chart_hits'])
+                    for hit in hits_list:
+                        country = hit.split()[0].strip().lower()  # Extract the country code
+                        print(f"pushing country: {country}")
+                        if country in country_count:
+                            country_count[country] += 1
+                        else:
+                            country_count[country] = 1
+
+        most_common_country = max(country_count, key=country_count.get)
+        most_famous_countries.append(most_common_country)
+        most_famous_artists.append(most_famous_artist)      
+            
     # Print the sizes of all communities
     with open('Spotify_Communities.txt', 'w') as f:
         f.write("Sizes of Top 10 communities:\n")
         for i in range(min(10, len(community_sizes))):
-            f.write(f"Community {i + 1}: {community_sizes[i]} nodes\n")
+            f.write(f"Community {i + 1}: {community_sizes[i]} nodes | Most famous artist: {most_famous_artists[i]} | Most famous country: {most_famous_countries[i]}\n")
         f.write(f"\nTotal Communities: {len(community_sizes)}")
     print("Communities written to Spotify_Communities.txt")

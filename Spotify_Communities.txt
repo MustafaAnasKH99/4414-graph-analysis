@@ -1,0 +1,13 @@
+Sizes of Top 10 communities:
+Community 1: 24279 nodes | Most famous artist: The Offspring | Most famous country: cr
+Community 2: 10556 nodes | Most famous artist: Quin Nfn | Most famous country: cr
+Community 3: 8708 nodes | Most famous artist: Haiti Babii | Most famous country: cr
+Community 4: 8224 nodes | Most famous artist: Drake | Most famous country: lt
+Community 5: 6386 nodes | Most famous artist: Duran Duran | Most famous country: lt
+Community 6: 5605 nodes | Most famous artist: Nelly Furtado | Most famous country: lt
+Community 7: 4859 nodes | Most famous artist: Burial | Most famous country: lt
+Community 8: 4789 nodes | Most famous artist: Ismael Rivera | Most famous country: lt
+Community 9: 4704 nodes | Most famous artist: Joe Weller | Most famous country: lt
+Community 10: 3335 nodes | Most famous artist: GiGi | Most famous country: lt
+
+Total Communities: 169
