@@ -35,8 +35,8 @@ print("The number of nodes are:", len(G.nodes))
 print("The number of edges are:", len(G.edges))
 
 # Find GCC
-largest_cc_2005 = max(nx.connected_components(G), key=len)
-GCC = G.subgraph(largest_cc_2005).copy()
+largest_cc = max(nx.connected_components(G), key=len)
+GCC = G.subgraph(largest_cc).copy()
 
 # Finding the list of followers and popularity
 follower_list = list(
@@ -66,7 +66,7 @@ average_followers = int(average_followers)
 average_popularity = total_popularity / len(GCC.nodes)
 average_popularity = int(average_popularity)
 
-# Print number of nodes and edges
+# Print GCC information
 print("The number of nodes in the GCC are:", len(GCC.nodes))
 print("The number of edges in the GCC are:", len(GCC.edges))
 print("\nThe min number of followers in the GCC are:", min_followers)
