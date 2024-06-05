@@ -273,19 +273,53 @@ print("\nThe average clustering is:", round(nx.average_clustering(GCC), 4))
 # Calculate PageRank
 pr = nx.pagerank(GCC, alpha=0.85, personalization=None, max_iter=100, nstart=None, weight='weight')
 
-# Round the PageRank scores to 7 significant figures
-rounded_pr = np.round(list(pr.values()), 7)
-
-# Finds top 50 pr_scores
-pr_scores = sorted([(author, pr_score) for author, pr_score in zip(sorted(GCC.nodes()), rounded_pr)],
-                   key=lambda x: x[1], reverse=True)[:50]
+# Sort the PageRank scores in descending order and get the top 50
+pr_scores = sorted([(artist, pr_score) for artist, pr_score in pr.items()], key=lambda x: x[1], reverse=True)[:50]
 
 # Open a text file and write the PageRank scores
-with open('Spotify_PageRank.txt', 'w') as f:
-    for author, pr_score in pr_scores:
-        f.write(f"{author}: {np.format_float_scientific(pr_score, precision=7, trim='k')}\n")
+with open('Spotify_PageRank.txt', 'w', encoding='utf-8') as f:
+    for artist, pr_score in pr_scores:
+        # Look up the artist name using the GCC graph
+        artist_name = GCC.nodes[artist]['name']
+        f.write(f"{artist_name}: {pr_score:.7f}\n")
 
-print("\nPageRank scores written to Spotify_PageRank")
+print("\nPageRank scores written to Spotify_PageRank.txt.")
+
+# Calculate HITS
+hits = nx.hits(GCC, max_iter=100)
+
+# Calculate the total score for each artist
+total_scores = {}
+for artist, hub_score in hits[0].items():
+    total_scores[artist] = hub_score * hits[1][artist]
+
+# Get the top 50 artists by total score
+hits_scores = sorted([(artist, score) for artist, score in total_scores.items()], key=lambda x: x[1], reverse=True)[:50]
+
+# Open a text file and write the top scores
+with open('Spotify_HITS.txt', 'w', encoding='utf-8') as f:
+    for artist, score in hits_scores:
+        # Look up the artist name using the GCC graph
+        artist_name = GCC.nodes[artist]['name']
+        f.write(f"{artist_name}: {score:.7f}\n")
+
+print("HITS scores written to Spotify_HITS.txt.")
+
+# Convert the lists to sets keeping only the artist ids
+pr_set = set([artist[0] for artist in pr_scores])
+hits_set = set([artist[0] for artist in hits_scores])
+
+# Find the intersection of the two sets
+common_artists = pr_set & hits_set
+
+# Save the common artists
+with open('Spotify_Common_Artists_PR_HITS.txt', 'w', encoding='utf-8') as f:
+    for artist in common_artists:
+        # Look up the artist name using the GCC graph
+        artist_name = GCC.nodes[artist]['name']
+        f.write(f"{artist_name}\n")
+
+print("Common artists from PageRank and HITS written to Spotify_Common_Artists_PR_HITS.txt.")
 
 # Calculate the node betweenness scores
 node_betweenness_scores = nx.betweenness_centrality(GCC, k=10)
@@ -297,11 +331,13 @@ rounded_node_betweenness_scores = {node: round(score, 8) for node, score in node
 sorted_nodes = sorted(rounded_node_betweenness_scores.items(), key=lambda x: x[1], reverse=True)
 
 # Save the top 20 nodes to a text file
-with open("Spotify_NodeBetweenness.txt", "w") as f:
+with open("Spotify_NodeBetweenness.txt", "w", encoding='utf-8') as f:
     for node, score in sorted_nodes[:20]:
-        f.write(f"{node}: {score}\n")
+        # Look up the artist name using the GCC graph
+        artist_name = GCC.nodes[node]['name']
+        f.write(f"{artist_name}: {score}\n")
 
-print("Node betweenness scores and authors written to Spotify_NodeBetweenness.txt")
+print("\nNode betweenness scores written to Spotify_NodeBetweenness.txt.")
 
 # Calculate the edge betweenness scores
 edge_betweenness_scores = nx.edge_betweenness_centrality(GCC, k=10)
@@ -313,11 +349,14 @@ rounded_edge_betweenness_scores = {edge: round(score, 8) for edge, score in edge
 sorted_edges = sorted(rounded_edge_betweenness_scores.items(), key=lambda x: x[1], reverse=True)
 
 # Save the top 20 edges to a text file
-with open("Spotify_EdgeBetweenness.txt", "w") as f:
+with open("Spotify_EdgeBetweenness.txt", "w", encoding='utf-8') as f:
     for edge, score in sorted_edges[:20]:
-        f.write(f"{edge[0]} - {edge[1]}: {score}\n")
+        # Look up the artist names using the GCC graph
+        artist1 = GCC.nodes[edge[0]]['name']
+        artist2 = GCC.nodes[edge[1]]['name']
+        f.write(f"{artist1} - {artist2}: {score}\n")
 
-print("Edge betweenness scores and authors written to Spotify_EdgeBetweenness.txt")
+print("Edge betweenness scores written to Spotify_EdgeBetweenness.txt.")
 
 # Using the louvain communities method to find communities.
 # Girvan-Newman method was not working with such a large network.
@@ -345,13 +384,12 @@ else:
                 most_famous_artist = GCC.nodes[artist]['name']
 
             # find the most famous country in each community
-            if 'chart_hits' in GCC.nodes[artist] and GCC.nodes[artist]['chart_hits'] != None:
+            if 'chart_hits' in GCC.nodes[artist] and GCC.nodes[artist]['chart_hits'] is not None:
                 charts = GCC.nodes[artist]['chart_hits']
                 if len(charts) > 0:
                     hits_list = ast.literal_eval(GCC.nodes[artist]['chart_hits'])
                     for hit in hits_list:
                         country = hit.split()[0].strip().lower()  # Extract the country code
-                        print(f"pushing country: {country}")
                         if country in country_count:
                             country_count[country] += 1
                         else:
@@ -359,12 +397,13 @@ else:
 
         most_common_country = max(country_count, key=country_count.get)
         most_famous_countries.append(most_common_country)
-        most_famous_artists.append(most_famous_artist)      
-            
-    # Print the sizes of all communities
+        most_famous_artists.append(most_famous_artist)
+
+        # Print the sizes of all communities
     with open('Spotify_Communities.txt', 'w') as f:
         f.write("Sizes of Top 10 communities:\n")
         for i in range(min(10, len(community_sizes))):
-            f.write(f"Community {i + 1}: {community_sizes[i]} nodes | Most famous artist: {most_famous_artists[i]} | Most famous country: {most_famous_countries[i]}\n")
+            f.write(
+                f"Community {i + 1}: {community_sizes[i]} nodes | Most famous artist: {most_famous_artists[i]} | Most famous country: {most_famous_countries[i]}\n")
         f.write(f"\nTotal Communities: {len(community_sizes)}")
-    print("Communities written to Spotify_Communities.txt")
+    print("\nCommunities written to Spotify_Communities.txt.")
