@@ -4,7 +4,6 @@ import json
 import os
 import random
 
-import numpy as np
 import networkx as nx
 import matplotlib.pyplot as plt
 from collections import Counter
@@ -67,14 +66,16 @@ average_popularity = total_popularity / len(GCC.nodes)
 average_popularity = int(average_popularity)
 
 # Print GCC information
-print("The number of nodes in the GCC are:", len(GCC.nodes))
-print("The number of edges in the GCC are:", len(GCC.edges))
-print("\nThe min number of followers in the GCC are:", min_followers)
-print("The average number of followers in the GCC are:", average_followers)
-print("The max number of followers in the GCC are:", max_followers)
-print("\nThe min number of popularity in the GCC are:", min_popularity)
-print("The average popularity in the GCC are:", average_popularity)
-print("The max popularity in the GCC are:", max_popularity)
+print("\nAll the following statistics are covering the GCC.")
+
+print("The number of nodes are:", len(GCC.nodes))
+print("The number of edges are:", len(GCC.edges))
+print("\nThe min number of followers are:", min_followers)
+print("The average number of followers are:", average_followers)
+print("The max number of followers are:", max_followers)
+print("\nThe min number of popularity are:", min_popularity)
+print("The average popularity are:", average_popularity)
+print("The max popularity are:", max_popularity)
 
 # Find the most common genre
 genre_count = {}
@@ -106,7 +107,7 @@ for node, data in GCC.nodes(data=True):
                 country_count[country] = 1
 
 most_common_country = max(country_count, key=country_count.get)
-print(f'The most popular country is {most_common_country}.\n')
+print(f'The most popular country is {most_common_country}.')
 
 # Finding the Degree Distribution
 degrees = GCC.degree()
@@ -133,11 +134,13 @@ plt.ylabel('P(k)')
 plt.grid(True, which="both", ls="--")
 plt.savefig("Spotify_DegreeDistribution.png")
 
+print("\nDegree distribution graph generated.")
+
 # Returns a dictionary values with the keys as the source node and the values as the clustering coefficients.
 clustering_coefficients = nx.clustering(GCC)
 
-# Round the clustering coefficients to 2 decimal places to limit significant figures.
-clustering_coefficients = {node: round(clustering_coefficients[node], 2) for node in GCC}
+# Round the clustering coefficients to 1 decimal places to limit significant figures.
+clustering_coefficients = {node: round(clustering_coefficients[node], 1) for node in GCC}
 
 # Create a dictionary of frequencies.
 frequencies = {}
@@ -161,6 +164,8 @@ plt.xlabel('Rounded Clustering Coefficient')
 plt.ylabel('C(k)')
 plt.grid(True, which="both", ls="--")
 plt.savefig("Spotify_ClusteringCoefficient.png")
+
+print("Clustering coefficient distribution graph generated.\n")
 
 # Finding the path_lengths for different percentages of the whole network.
 # The all_pairs_shortest_paths is not very good at handling extremely large networks.
@@ -262,13 +267,19 @@ else:
         max_key = max(collapsed_dict.keys(), key=int)
         print("The diameter of this sample was:", max_key)
 
+        # Finding the average shortest path of the sample
+        sample_total = sum(key * value for key, value in collapsed_dict.items())
+        sample_count = sum(collapsed_dict.values())
+        sample_average = round(sample_total / sample_count, 2)
+        print(f"The average shortest path of this sample was: {sample_average}\n")
+
         # Load the frequency dictionary from a file
         with open('frequency_dict_{}.txt'.format(sample_rate), 'r') as f:
             dict_name = 'frequency_dict_{}'.format(sample_rate)
             frequency_dict = {dict_name: json.load(f)}
 
 # Print the average clustering of the network
-print("\nThe average clustering is:", round(nx.average_clustering(GCC), 4))
+print("The average clustering is:", round(nx.average_clustering(GCC), 4))
 
 # Calculate PageRank
 pr = nx.pagerank(GCC, alpha=0.85, personalization=None, max_iter=100, nstart=None, weight='weight')
