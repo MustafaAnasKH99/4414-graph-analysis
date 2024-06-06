@@ -156,9 +156,12 @@ total_freq = sum(frequencies.values())
 # Find the probability of each frequency.
 frequency_values = {k: v / total_freq for k, v in frequencies.items()}
 
+# Sorted the dictionary to add line.
+sorted_frequency_values = dict(sorted(frequency_values.items()))
+
 # Graph customization code.
 plt.figure(figsize=(10, 6))
-plt.plot(frequency_values.keys(), frequency_values.values(), marker='o', linestyle='None')
+plt.plot(sorted_frequency_values.keys(), sorted_frequency_values.values(), marker='o', linestyle='-')
 plt.title('Clustering Coefficient Distribution of Giant Connected Component')
 plt.xlabel('Rounded Clustering Coefficient')
 plt.ylabel('C(k)')
@@ -237,9 +240,12 @@ if not os.path.isfile('collapsed_0.01.txt'):
         # Find the probability of each frequency in the dictionary.
         collapsed_frequency_dict = {k: v / total_freq for k, v in collapsed_frequency_dict.items()}
 
+        # Sorted the dictionary to add line.
+        sorted_collapsed = dict(sorted(collapsed_frequency_dict.items()))
+
         # Graph customization code.
         plt.figure(figsize=(10, 6))
-        plt.plot(collapsed_frequency_dict.keys(), collapsed_frequency_dict.values(), marker='o', linestyle='None')
+        plt.plot(sorted_collapsed.keys(), sorted_collapsed.values(), marker='o', linestyle='-')
         plt.title('Shortest Path Length Distribution of Giant Connected Component')
         plt.xlabel('Distance')
         plt.ylabel('P(k)')
@@ -272,6 +278,20 @@ else:
         sample_count = sum(collapsed_dict.values())
         sample_average = round(sample_total / sample_count, 2)
         print(f"The average shortest path of this sample was: {sample_average}\n")
+
+        # Sorted the dictionary to add line.
+        sorted_collapsed_dict = dict(sorted(collapsed_dict.items()))
+
+        # Graph customization code.
+        plt.figure(figsize=(10, 6))
+        plt.plot(sorted_collapsed_dict.keys(), sorted_collapsed_dict.values(), marker='o', linestyle='-')
+        plt.title('Shortest Path Length Distribution of Giant Connected Component')
+        plt.xlabel('Distance')
+        plt.ylabel('P(k)')
+        plt.grid(True, which="both", ls="--")
+
+        # Saving the graph as an image.
+        plt.savefig('Spotify_SP{}Distribution.png'.format(sample_rate))
 
         # Load the frequency dictionary from a file
         with open('frequency_dict_{}.txt'.format(sample_rate), 'r') as f:
