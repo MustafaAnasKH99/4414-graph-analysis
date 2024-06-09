@@ -1,20 +1,20 @@
-Traditional: 0.13189181
-GDRN: 0.10022841
-Radistai Dj's: 0.10015157
-Hatari: 0.10010379
-Markus Krunegård: 0.10010302
-Kirka: 0.10007738
-Julien Bam: 0.10007347
-Alisky: 0.10006036
-Sammy: 0.0988729
-Hayley May: 0.07800254
-Benjamin Ingrosso: 0.06238477
-ELIF: 0.06087485
-Nio Garcia: 0.05662977
-Felo: 0.04785045
-Iceland Symphony Orchestra: 0.04651516
-Tom & Hills: 0.04572252
-Chris Brown: 0.04488979
-Anonimus: 0.03592042
-Kaskade: 0.03460163
-Quebonafide: 0.0341213
+A.R. Rahman: 0.10651475
+Andrea Bocelli: 0.10556942
+Ñengo Flow: 0.10196315
+INNA: 0.10133628
+Stylo G: 0.10080197
+Remik Gonzalez: 0.10058385
+Orinn: 0.10033131
+Kim Feel: 0.10003899
+Hitmaker: 0.10001213
+Young Dolph: 0.08618382
+Moby: 0.08565661
+Snoop Dogg: 0.05414666
+Wale: 0.04084083
+Henry: 0.03859095
+Epik High: 0.03553783
+Santa Fe Klan: 0.03392217
+Far East Movement: 0.03164065
+Steve Aoki: 0.0263295
+HEIZE: 0.02536541
+Various Artists: 0.0247261

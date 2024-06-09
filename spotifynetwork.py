@@ -106,6 +106,7 @@ for node, data in GCC.nodes(data=True):
             else:
                 country_count[country] = 1
 
+print(country_count)
 most_common_country = max(country_count, key=country_count.get)
 print(f'The most popular country is {most_common_country}.')
 
@@ -389,56 +390,58 @@ with open("Spotify_EdgeBetweenness.txt", "w", encoding='utf-8') as f:
 
 print("Edge betweenness scores written to Spotify_EdgeBetweenness.txt.")
 
-# Using the louvain communities method to find communities.
+# Using the louvain communities method and greedy modularity algorithm to find communities.
 # Girvan-Newman method was not working with such a large network.
-partitions = list(nx.community.louvain_communities(GCC))
+def communityDefiner(partitions, fileName):
+    if len(partitions) == 0:
+        print("The Louvain partitions algorithm didn't return any communities.")
+    else:
+        # Get the community sizes
+        community_sizes = [len(c) for c in partitions]
+        # Sort the community sizes in descending order
+        community_sizes.sort(reverse=True)
+        # find the most famous artist in each community
+        most_famous_artists = []
+        most_famous_countries = []
+        country_count = {}
 
-if len(partitions) == 0:
-    print("The Louvain partitions algorithm didn't return any communities.")
-else:
-    # Get the community sizes
-    community_sizes = [len(c) for c in partitions]
-    # Sort the community sizes in descending order
-    community_sizes.sort(reverse=True)
-    # find the most famous artist in each community
-    most_famous_artists = []
-    most_famous_countries = []
-    country_count = {}
+        for community in partitions:
+            max_popularity = 0
+            most_famous_artist = None
+            most_famous_country = None
+            for artist in community:
+                if 'popularity' in GCC.nodes[artist] and GCC.nodes[artist]['popularity'] > max_popularity:
+                    max_popularity = GCC.nodes[artist]['popularity']
+                    most_famous_artist = GCC.nodes[artist]['name']
 
-    for community in partitions:
-        max_popularity = 0
-        most_famous_artist = None
-        most_famous_country = None
-        for artist in community:
-            if 'popularity' in GCC.nodes[artist] and GCC.nodes[artist]['popularity'] > max_popularity:
-                max_popularity = GCC.nodes[artist]['popularity']
-                most_famous_artist = GCC.nodes[artist]['name']
+                # find the most famous country in each community
+                if 'chart_hits' in GCC.nodes[artist] and GCC.nodes[artist]['chart_hits'] is not None:
+                    charts = GCC.nodes[artist]['chart_hits']
+                    if len(charts) > 0:
+                        hits_list = ast.literal_eval(GCC.nodes[artist]['chart_hits'])
+                        for hit in hits_list:
+                            country = hit.split()[0].strip().lower()  # Extract the country code
+                            if country in country_count:
+                                country_count[country] += 1
+                            else:
+                                country_count[country] = 1
 
-            # find the most famous country in each community
-            if 'chart_hits' in GCC.nodes[artist] and GCC.nodes[artist]['chart_hits'] is not None:
-                charts = GCC.nodes[artist]['chart_hits']
-                if len(charts) > 0:
-                    hits_list = ast.literal_eval(GCC.nodes[artist]['chart_hits'])
-                    for hit in hits_list:
-                        country = hit.split()[0].strip().lower()  # Extract the country code
-                        if country in country_count:
-                            country_count[country] += 1
-                        else:
-                            country_count[country] = 1
+            most_common_country = max(country_count, key=country_count.get)
+            most_famous_countries.append(most_common_country)
+            most_famous_artists.append(most_famous_artist)
 
-        most_common_country = max(country_count, key=country_count.get)
-        most_famous_countries.append(most_common_country)
-        most_famous_artists.append(most_famous_artist)
-
-        # Print the sizes of all communities
-    with open('Spotify_Communities.txt', 'w') as f:
-        f.write("Sizes of Top 10 communities:\n")
-        for i in range(min(10, len(community_sizes))):
-            f.write(
-                f"Community {i + 1}: {community_sizes[i]} nodes | Most famous artist: {most_famous_artists[i]} | Most famous country: {most_famous_countries[i]}\n")
-        f.write(f"\nTotal Communities: {len(community_sizes)}")
-    print("\nCommunities written to Spotify_Communities.txt.")
-
+            # Print the sizes of all communities
+        with open(fileName, 'w') as f:
+            f.write("Sizes of Top 10 communities:\n")
+            for i in range(min(10, len(community_sizes))):
+                f.write(
+                    f"Community {i + 1}: {community_sizes[i]} nodes | Most famous artist: {most_famous_artists[i]} | Most famous country: {most_famous_countries[i]}\n")
+            f.write(f"\nTotal Communities: {len(community_sizes)}")
+        print(f"\nCommunities written to {fileName}")
+louvainPartitions = list(nx.community.louvain_communities(GCC))
+communityDefiner(louvainPartitions, 'Spotify_Louvain_Communities.txt')
+kCliquePartitions = list(nx.community.k_clique_communities(GCC, 5))
+communityDefiner(kCliquePartitions, 'Spotify_K_Clique_Communities.txt')
 # Calculate the total number of genres
 genre_count = 0
 chart_hits_count = 0
