@@ -10,6 +10,6 @@ A team project exploring the network of collaborations between Spotify musicians
   - store agerages in an array too
   - Average of all artist averages
 - Find all pairs shortest paths to the full network [Mustafa : **In progress**]
-- One or two extra community prediction algorithms and then compare to each other.
+- One or two extra community prediction algorithms and then compare to each other. [Jibril : **Completed**]
 - Find most popular genre in each country and most popular country in each genre.
   - Ex. Like what genre is most popular in Canada and what country has the most rock artists/hits?
