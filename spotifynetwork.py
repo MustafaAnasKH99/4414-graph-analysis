@@ -438,3 +438,37 @@ else:
                 f"Community {i + 1}: {community_sizes[i]} nodes | Most famous artist: {most_famous_artists[i]} | Most famous country: {most_famous_countries[i]}\n")
         f.write(f"\nTotal Communities: {len(community_sizes)}")
     print("\nCommunities written to Spotify_Communities.txt.")
+
+# Calculate the total number of genres
+genre_count = 0
+chart_hits_count = 0
+
+for artist in GCC.nodes:
+    if 'genres' in GCC.nodes[artist]:
+        genres = ast.literal_eval(GCC.nodes[artist]['genres'])
+        genre_count += len(genres)
+
+    if 'chart_hits' in GCC.nodes[artist]:
+        if len(GCC.nodes[artist]['chart_hits']) > 0:
+            chart_hits = ast.literal_eval(GCC.nodes[artist]['chart_hits'])
+            chart_hits_count += len(chart_hits)
+
+# find and print the average number of genres per artist
+with open('Spotify_AverageGenres.txt', 'w', encoding="utf-8") as f:
+    f.write(f"- Average number of genres for artists - \n")
+    for artist in GCC.nodes:
+        if 'genres' in GCC.nodes[artist]:
+            genres = ast.literal_eval(GCC.nodes[artist]['genres'])
+            average_genres = len(genres) / genre_count
+            f.write(f"{GCC.nodes[artist]['name']} has {len(genres)} genres || Average (artist genres/total genres) is {average_genres}\n")
+
+
+# find and print the average number of chart hits per artist
+with open('Spotify_AverageCountries.txt', 'w', encoding="utf-8") as f:
+    f.write(f"- Average number of countries for artists - \n")
+    for artist in GCC.nodes:
+        if 'chart_hits' in GCC.nodes[artist]:
+            if len(GCC.nodes[artist]['chart_hits']) > 0:
+                chart_hits = ast.literal_eval(GCC.nodes[artist]['chart_hits'])
+                average_charts = len(chart_hits) / chart_hits_count
+                f.write(f"{GCC.nodes[artist]['name']} has hits in {len(genres)} countries || Average (artist countries/total countries) is {average_charts}\n")

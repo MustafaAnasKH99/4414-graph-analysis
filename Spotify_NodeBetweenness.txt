@@ -1,20 +1,20 @@
-Snoop Dogg: 0.17231216
-Giorgio Moroder: 0.10080246
-The Roots: 0.10063846
-Ryan Hemsworth: 0.1004337
-Mario Joy: 0.10035195
-Mody Amin: 0.10034752
-Dr. Dre: 0.10018778
-Sublime: 0.10010665
-Pitbull: 0.08378927
-Felo: 0.08030699
-Psirico: 0.0758437
-Wyclef Jean: 0.07575315
-Mozzy: 0.05127635
-Bigflo & Oli: 0.04063562
-Otilia: 0.03846371
-Busta Rhymes: 0.03607917
-Shaggy: 0.02661302
-Gwen Stefani: 0.02589248
-INNA: 0.0234794
-Anitta: 0.02137761
+Traditional: 0.13189181
+GDRN: 0.10022841
+Radistai Dj's: 0.10015157
+Hatari: 0.10010379
+Markus Krunegård: 0.10010302
+Kirka: 0.10007738
+Julien Bam: 0.10007347
+Alisky: 0.10006036
+Sammy: 0.0988729
+Hayley May: 0.07800254
+Benjamin Ingrosso: 0.06238477
+ELIF: 0.06087485
+Nio Garcia: 0.05662977
+Felo: 0.04785045
+Iceland Symphony Orchestra: 0.04651516
+Tom & Hills: 0.04572252
+Chris Brown: 0.04488979
+Anonimus: 0.03592042
+Kaskade: 0.03460163
+Quebonafide: 0.0341213
