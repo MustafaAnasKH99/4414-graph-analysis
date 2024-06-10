@@ -1,13 +1,13 @@
 Sizes of Top 10 communities:
-Community 1: 1500 nodes | Most famous artist: Mark Ronson | Most famous country: ca
-Community 2: 491 nodes | Most famous artist: F.HERO | Most famous country: th
-Community 3: 257 nodes | Most famous artist: Ninho | Most famous country: fr
-Community 4: 207 nodes | Most famous artist: Bad Bunny | Most famous country: do
-Community 5: 185 nodes | Most famous artist: J Balvin | Most famous country: ch
-Community 6: 140 nodes | Most famous artist: Mc Pepeu | Most famous country: ch
-Community 7: 136 nodes | Most famous artist: Burna Boy | Most famous country: ch
-Community 8: 126 nodes | Most famous artist: Maikel Delacalle | Most famous country: ch
-Community 9: 91 nodes | Most famous artist: Justin Quiles | Most famous country: ch
-Community 10: 74 nodes | Most famous artist: GDRN | Most famous country: ch
+Community 1: 1500 nodes | Most famous artist: Quevedo | Most famous country: es
+Community 2: 491 nodes | Most famous artist: Quevedo | Most famous country: es
+Community 3: 257 nodes | Most famous artist: BHZ | Most famous country: de
+Community 4: 207 nodes | Most famous artist: Monk | Most famous country: de
+Community 5: 185 nodes | Most famous artist: Longus Mongus | Most famous country: de
+Community 6: 140 nodes | Most famous artist: DJ.Silence | Most famous country: de
+Community 7: 136 nodes | Most famous artist: Negros Tou Moria | Most famous country: de
+Community 8: 126 nodes | Most famous artist: Gabry Ponte | Most famous country: de
+Community 9: 91 nodes | Most famous artist: Bad Bunny | Most famous country: do
+Community 10: 74 nodes | Most famous artist: Gabry Ponte | Most famous country: do
 
 Total Communities: 433

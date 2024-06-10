@@ -1,13 +1,13 @@
 Sizes of Top 10 communities:
-Community 1: 24123 nodes | Most famous artist: Quin Nfn | Most famous country: lt
-Community 2: 13196 nodes | Most famous artist: Haiti Babii | Most famous country: lt
-Community 3: 9542 nodes | Most famous artist: Wheatus | Most famous country: lt
-Community 4: 7052 nodes | Most famous artist: Joe Weller | Most famous country: gb
-Community 5: 6197 nodes | Most famous artist: GiGi | Most famous country: gb
-Community 6: 5021 nodes | Most famous artist: Drake | Most famous country: lt
-Community 7: 4883 nodes | Most famous artist: Alexander Hanson | Most famous country: lt
-Community 8: 4478 nodes | Most famous artist: Cardenales De Nuevo León | Most famous country: lt
-Community 9: 4125 nodes | Most famous artist: Baby Goth | Most famous country: lt
-Community 10: 3683 nodes | Most famous artist: Twenty One Pilots | Most famous country: lt
+Community 1: 24430 nodes | Most famous artist: Haiti Babii | Most famous country: us
+Community 2: 14117 nodes | Most famous artist: Wheatus | Most famous country: gb
+Community 3: 8713 nodes | Most famous artist: Deftones | Most famous country: gb
+Community 4: 6907 nodes | Most famous artist: Burial | Most famous country: gb
+Community 5: 6511 nodes | Most famous artist: GiGi | Most famous country: gb
+Community 6: 6051 nodes | Most famous artist: Ninho | Most famous country: fr
+Community 7: 4595 nodes | Most famous artist: Baby Goth | Most famous country: fr
+Community 8: 4580 nodes | Most famous artist: South Park Mexican | Most famous country: fr
+Community 9: 4536 nodes | Most famous artist: J.T. Machinima | Most famous country: fr
+Community 10: 3374 nodes | Most famous artist: La Fiera de Ojinaga | Most famous country: fr
 
-Total Communities: 179
+Total Communities: 191

@@ -1,20 +1,20 @@
-A.R. Rahman: 0.10651475
-Andrea Bocelli: 0.10556942
-Ñengo Flow: 0.10196315
-INNA: 0.10133628
-Stylo G: 0.10080197
-Remik Gonzalez: 0.10058385
-Orinn: 0.10033131
-Kim Feel: 0.10003899
-Hitmaker: 0.10001213
-Young Dolph: 0.08618382
-Moby: 0.08565661
-Snoop Dogg: 0.05414666
-Wale: 0.04084083
-Henry: 0.03859095
-Epik High: 0.03553783
-Santa Fe Klan: 0.03392217
-Far East Movement: 0.03164065
-Steve Aoki: 0.0263295
-HEIZE: 0.02536541
-Various Artists: 0.0247261
+EQRIC: 0.10057427
+Saran: 0.10043514
+Altimet: 0.1003858
+MR.BLACK: 0.10030543
+D-Rashid: 0.10026313
+Ray J: 0.10020851
+Apollo G: 0.10010459
+和ぬか: 0.10002517
+Yuka Kharisma: 0.10001213
+Aisha Retno: 0.10000674
+natsumi: 0.10000674
+GeG: 0.0967757
+Snoop Dogg: 0.0962446
+Supa Squad: 0.09112277
+Gloria Groove: 0.07727372
+Joe Flizzow: 0.07047002
+R3HAB: 0.06810104
+Tiësto: 0.06419115
+Motohiro Hata: 0.06013898
+TCTS: 0.05927084

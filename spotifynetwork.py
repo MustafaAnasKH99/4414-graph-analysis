@@ -77,38 +77,77 @@ print("\nThe min number of popularity are:", min_popularity)
 print("The average popularity are:", average_popularity)
 print("The max popularity are:", max_popularity)
 
-# Find the most common genre
-genre_count = {}
-for node, data in GCC.nodes(data=True):
-    genres = data.get('genres')
-    if genres:
-        genres_list = ast.literal_eval(genres)  # Convert string representation of list to actual list
-        for genre in genres_list:
-            genre = genre.strip().lower()
-            if genre in genre_count:
-                genre_count[genre] += 1
-            else:
-                genre_count[genre] = 1
-
-most_common_genre = max(genre_count, key=genre_count.get)
-print(f'\nThe most common genre is {most_common_genre}.')
-
-# Find the most popular country
-country_count = {}
+# Get list of all nations and genres
+nationList = []
+genreList = []
 for node, data in GCC.nodes(data=True):
     chart_hits = data.get('chart_hits')
     if chart_hits:
         hits_list = ast.literal_eval(chart_hits)
         for hit in hits_list:
-            country = hit.split()[0].strip().lower()  # Extract the country code
-            if country in country_count:
-                country_count[country] += 1
-            else:
-                country_count[country] = 1
+            country = hit.split()[0].strip().lower()
+            nationList.append(country)
+    genres = data.get('genres')
+    if genres:
+        genres_list = ast.literal_eval(genres)  # Convert string representation of list to actual list
+        for genre in genres_list:
+            genre = genre.strip().lower()
+            genreList.append(genre)
+nationList = list(set(nationList))
+genreList = list(set(genreList))
+nationList.append('wo')
+genreList.append('all music')
 
-print(country_count)
-most_common_country = max(country_count, key=country_count.get)
-print(f'The most popular country is {most_common_country}.')
+# Find the most common genre
+nationPrint = []
+for n in nationList:
+    genre_count = {}
+    for node, data in GCC.nodes(data=True):
+        genres = data.get('genres')
+        if genres and (str(n) in str(data.get('chart_hits')) or str(n) == "wo"):
+            genres_list = ast.literal_eval(genres)  # Convert string representation of list to actual list
+            for genre in genres_list:
+                genre = genre.strip().lower()
+                if genre in genre_count:
+                    genre_count[genre] += 1
+                else:
+                    genre_count[genre] = 1
+    most_common_genre = max(genre_count, key=genre_count.get)
+    if str(n) != "wo":
+        nationPrint.append(f'The most common genre in {n} is {most_common_genre}.\n')
+    else:
+        nationPrint.append(f'\nThe most common genre is {most_common_genre}.\n')
+with open("Spotify_GenresMostPopularCountry.txt", "w", encoding='utf-8') as f:
+    for n in nationPrint:
+        f.write(n)
+print("\nData written to Spotify_GenresMostPopularCountry.txt.")
+
+# Find the most popular country
+genrePrint = []
+for g in genreList:
+    country_count = {}
+    for node, data in GCC.nodes(data=True):
+        chart_hits = data.get('chart_hits')
+        if chart_hits and (str(g) in str(data.get('genres')) or str(g) == "all music"):
+            hits_list = ast.literal_eval(chart_hits)
+            for hit in hits_list:
+                country = hit.split()[0].strip().lower()  # Extract the country code
+                if country in country_count:
+                    country_count[country] += 1
+                else:
+                    country_count[country] = 1
+    if len(country_count) != 0:
+        most_common_country = max(country_count, key=country_count.get)
+        if str(g) != "all music":
+            genrePrint.append(f'The country with the most {g} songs is {most_common_country}.\n')
+        else:
+            genrePrint.append(f'\nThe most popular country is {most_common_country}.\n')
+    else:
+        genrePrint.append(f'The genre {g} did not go into any nation\'s top charts.\n')
+with open("Spotify_MostPopularGenresByCountry.txt", "w", encoding='utf-8') as f:
+    for g in genrePrint:
+        f.write(g)
+print("Data written to Spotify_MostPopularGenresByCountry.txt.")
 
 # Finding the Degree Distribution
 degrees = GCC.degree()
