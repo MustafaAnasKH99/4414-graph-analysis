@@ -1,13 +1,13 @@
 Sizes of Top 10 communities:
-Community 1: 24430 nodes | Most famous artist: Haiti Babii | Most famous country: us
-Community 2: 14117 nodes | Most famous artist: Wheatus | Most famous country: gb
-Community 3: 8713 nodes | Most famous artist: Deftones | Most famous country: gb
-Community 4: 6907 nodes | Most famous artist: Burial | Most famous country: gb
-Community 5: 6511 nodes | Most famous artist: GiGi | Most famous country: gb
-Community 6: 6051 nodes | Most famous artist: Ninho | Most famous country: fr
-Community 7: 4595 nodes | Most famous artist: Baby Goth | Most famous country: fr
-Community 8: 4580 nodes | Most famous artist: South Park Mexican | Most famous country: fr
-Community 9: 4536 nodes | Most famous artist: J.T. Machinima | Most famous country: fr
-Community 10: 3374 nodes | Most famous artist: La Fiera de Ojinaga | Most famous country: fr
+Community 1: 24141 nodes | Most famous artist: Quin Nfn | Most famous country: lt
+Community 2: 8708 nodes | Most famous artist: Ismael Rivera | Most famous country: lt
+Community 3: 6809 nodes | Most famous artist: GiGi | Most famous country: lt
+Community 4: 5220 nodes | Most famous artist: Twenty One Pilots | Most famous country: at
+Community 5: 4577 nodes | Most famous artist: Mafia Gang | Most famous country: at
+Community 6: 3705 nodes | Most famous artist: Die drei ??? | Most famous country: de
+Community 7: 3442 nodes | Most famous artist: Interplanetary Criminal | Most famous country: de
+Community 8: 3019 nodes | Most famous artist: Christina Stürmer | Most famous country: de
+Community 9: 2791 nodes | Most famous artist: Jeff Kush | Most famous country: de
+Community 10: 2763 nodes | Most famous artist: $uicideboy$ | Most famous country: de
 
-Total Communities: 191
+Total Communities: 182
