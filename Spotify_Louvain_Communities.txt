@@ -1,13 +1,13 @@
 Sizes of Top 10 communities:
-Community 1: 24141 nodes | Most famous artist: Quin Nfn | Most famous country: lt
-Community 2: 8708 nodes | Most famous artist: Ismael Rivera | Most famous country: lt
-Community 3: 6809 nodes | Most famous artist: GiGi | Most famous country: lt
-Community 4: 5220 nodes | Most famous artist: Twenty One Pilots | Most famous country: at
-Community 5: 4577 nodes | Most famous artist: Mafia Gang | Most famous country: at
-Community 6: 3705 nodes | Most famous artist: Die drei ??? | Most famous country: de
-Community 7: 3442 nodes | Most famous artist: Interplanetary Criminal | Most famous country: de
-Community 8: 3019 nodes | Most famous artist: Christina Stürmer | Most famous country: de
-Community 9: 2791 nodes | Most famous artist: Jeff Kush | Most famous country: de
-Community 10: 2763 nodes | Most famous artist: $uicideboy$ | Most famous country: de
+Community 1: 24440 nodes | Most famous artist: BTS | Most famous country: lt
+Community 2: 9091 nodes | Most famous artist: Red Hot Chili Peppers | Most famous country: lt
+Community 3: 6642 nodes | Most famous artist: Revel Day | Most famous country: lt
+Community 4: 4943 nodes | Most famous artist: Bolaget | Most famous country: lt
+Community 5: 4276 nodes | Most famous artist: The Longest Johns | Most famous country: lt
+Community 6: 3350 nodes | Most famous artist: Maria Lamuela | Most famous country: lt
+Community 7: 3282 nodes | Most famous artist: Pat Benatar | Most famous country: lt
+Community 8: 3020 nodes | Most famous artist: Ismael Rivera | Most famous country: lt
+Community 9: 2929 nodes | Most famous artist: Dan García | Most famous country: lt
+Community 10: 2684 nodes | Most famous artist: LEOWI | Most famous country: lt
 
-Total Communities: 182
+Total Communities: 118

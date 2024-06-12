@@ -80,6 +80,8 @@ print("The max popularity are:", max_popularity)
 # Get list of all nations and genres
 nationList = []
 genreTop50 = {}
+genreTop50CA = {}
+genreTop50US = {}
 for node, data in GCC.nodes(data=True):
     chart_hits = data.get('chart_hits')
     if chart_hits:
@@ -93,11 +95,21 @@ for node, data in GCC.nodes(data=True):
         for genre in genres_list:
             genre = genre.strip().lower()
             if genre in genreTop50:
+                if 'ca' in data.get('chart_hits') and genre in genreTop50CA:
+                    genreTop50CA[genre] += 1
+                if 'us' in data.get('chart_hits') and genre in genreTop50US:
+                    genreTop50US[genre] += 1
                 genreTop50[genre] += 1
             else:
+                if 'ca' in data.get('chart_hits'):
+                    genreTop50CA[genre] = 1
+                if 'us' in data.get('chart_hits'):
+                    genreTop50US[genre] = 1
                 genreTop50[genre] = 1
 nationList = list(set(nationList))
 genreTop50 = sorted(genreTop50, key=genreTop50.get, reverse=True)[:50]
+genreTop50CA = sorted(genreTop50CA, key=genreTop50CA.get, reverse=True)[:50]
+genreTop50US = sorted(genreTop50US, key=genreTop50US.get, reverse=True)[:50]
 nationList.append('wo')
 genreTop50.append('all music')
 
@@ -148,6 +160,27 @@ with open("Spotify_MostPopularGenresByCountry.txt", "w", encoding='utf-8') as f:
     for g in genrePrint:
         f.write(g)
 print("Data written to Spotify_MostPopularGenresByCountry.txt.")
+
+# Apply Canada and USA's top 50 genres to a file
+with open("Spotify_Top50Genres_CA.txt", "w", encoding='utf-8') as f:
+    i = 1
+    for n in genreTop50CA:
+        f.write(f"Genre #{i}: {n}\n")
+        i += 1
+print("\nTop 50 most popular genres in Canada written to Spotify_Top50Genres_CA.txt.")
+with open("Spotify_Top50Genres_US.txt", "w", encoding='utf-8') as f:
+    i = 1
+    for n in genreTop50US:
+        f.write(f"Genre #{i}: {n}\n")
+        i += 1
+print("Top 50 most popular genres in the United States written to Spotify_Top50Genres_US.txt.")
+ca_set = set(genreTop50CA)
+us_set = set(genreTop50US)
+commonGenres = ca_set & us_set
+with open("Spotify_CommonGenres_CAUS.txt", "w", encoding='utf-8') as f:
+    for n in commonGenres:
+        f.write(f"{n}\n")
+print("Common popular genres between Canada and the United States written to Spotify_CommonGenres_CAUS.txt.")
 
 # Finding the Degree Distribution
 degrees = GCC.degree()
