@@ -2,6 +2,8 @@
 
 A team project exploring the network of collaborations between Spotify musicians and artists from across the globe! This project is done by a team of undergraduate students enrolled in EECS4414 in York University. The dataset was found from the following link: https://www.kaggle.com/datasets/jfreyberg/spotify-artist-feature-collaboration-network. We acknowledge that we do not own the dataset and are merely using it as an example database. 
 
+Presentation: https://docs.google.com/presentation/d/1ze4mUL9q4ix9uU5JXh567A3BTmTC1e7g17TCdBRHC58/edit?usp=sharing
+
 ## TO DO:
 - Fix AverageGenres and AverageCountries
   - Push genres/countries to a set
