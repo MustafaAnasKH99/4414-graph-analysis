@@ -434,9 +434,9 @@ rounded_node_betweenness_scores = {node: round(score, 8) for node, score in node
 # Sort the nodes by their rounded node betweenness scores in descending order
 sorted_nodes = sorted(rounded_node_betweenness_scores.items(), key=lambda x: x[1], reverse=True)
 
-# Save the top 20 nodes to a text file
+# Save the top 50 nodes to a text file
 with open("Spotify_NodeBetweenness.txt", "w", encoding='utf-8') as f:
-    for node, score in sorted_nodes[:20]:
+    for node, score in sorted_nodes[:50]:
         # Look up the artist name using the GCC graph
         artist_name = GCC.nodes[node]['name']
         f.write(f"{artist_name}: {score}\n")
@@ -452,9 +452,9 @@ rounded_edge_betweenness_scores = {edge: round(score, 8) for edge, score in edge
 # Sort the edges by their rounded edge betweenness scores in descending order
 sorted_edges = sorted(rounded_edge_betweenness_scores.items(), key=lambda x: x[1], reverse=True)
 
-# Save the top 20 edges to a text file
+# Save the top 50 edges to a text file
 with open("Spotify_EdgeBetweenness.txt", "w", encoding='utf-8') as f:
-    for edge, score in sorted_edges[:20]:
+    for edge, score in sorted_edges[:50]:
         # Look up the artist names using the GCC graph
         artist1 = GCC.nodes[edge[0]]['name']
         artist2 = GCC.nodes[edge[1]]['name']
