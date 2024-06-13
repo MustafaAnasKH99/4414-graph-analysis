@@ -77,37 +77,110 @@ print("\nThe min number of popularity are:", min_popularity)
 print("The average popularity are:", average_popularity)
 print("The max popularity are:", max_popularity)
 
-# Find the most common genre
-genre_count = {}
-for node, data in GCC.nodes(data=True):
-    genres = data.get('genres')
-    if genres:
-        genres_list = ast.literal_eval(genres)  # Convert string representation of list to actual list
-        for genre in genres_list:
-            genre = genre.strip().lower()
-            if genre in genre_count:
-                genre_count[genre] += 1
-            else:
-                genre_count[genre] = 1
-
-most_common_genre = max(genre_count, key=genre_count.get)
-print(f'\nThe most common genre is {most_common_genre}.')
-
-# Find the most popular country
-country_count = {}
+# Get list of all nations and genres
+nationList = []
+genreTop50 = {}
+genreTop50CA = {}
+genreTop50US = {}
 for node, data in GCC.nodes(data=True):
     chart_hits = data.get('chart_hits')
     if chart_hits:
         hits_list = ast.literal_eval(chart_hits)
         for hit in hits_list:
-            country = hit.split()[0].strip().lower()  # Extract the country code
-            if country in country_count:
-                country_count[country] += 1
+            country = hit.split()[0].strip().lower()
+            nationList.append(country)
+    genres = data.get('genres')
+    if genres:
+        genres_list = ast.literal_eval(genres)  # Convert string representation of list to actual list
+        for genre in genres_list:
+            genre = genre.strip().lower()
+            if genre in genreTop50:
+                if 'ca' in data.get('chart_hits') and genre in genreTop50CA:
+                    genreTop50CA[genre] += 1
+                if 'us' in data.get('chart_hits') and genre in genreTop50US:
+                    genreTop50US[genre] += 1
+                genreTop50[genre] += 1
             else:
-                country_count[country] = 1
+                if 'ca' in data.get('chart_hits'):
+                    genreTop50CA[genre] = 1
+                if 'us' in data.get('chart_hits'):
+                    genreTop50US[genre] = 1
+                genreTop50[genre] = 1
+nationList = list(set(nationList))
+genreTop50 = sorted(genreTop50, key=genreTop50.get, reverse=True)[:50]
+genreTop50CA = sorted(genreTop50CA, key=genreTop50CA.get, reverse=True)[:50]
+genreTop50US = sorted(genreTop50US, key=genreTop50US.get, reverse=True)[:50]
+nationList.append('wo')
+genreTop50.append('all music')
 
-most_common_country = max(country_count, key=country_count.get)
-print(f'The most popular country is {most_common_country}.')
+# Find the most common genre
+nationPrint = []
+for n in nationList:
+    genre_count = {}
+    for node, data in GCC.nodes(data=True):
+        genres = data.get('genres')
+        if genres and (str(n) in str(data.get('chart_hits')) or str(n) == "wo"):
+            genres_list = ast.literal_eval(genres)  # Convert string representation of list to actual list
+            for genre in genres_list:
+                genre = genre.strip().lower()
+                if genre in genre_count:
+                    genre_count[genre] += 1
+                else:
+                    genre_count[genre] = 1
+    most_common_genre = max(genre_count, key=genre_count.get)
+    if str(n) != "wo":
+        nationPrint.append(f'The most common genre in {n} is {most_common_genre}.\n')
+    else:
+        nationPrint.append(f'\nThe most common genre is {most_common_genre}.\n')
+with open("Spotify_GenresMostPopularCountry.txt", "w", encoding='utf-8') as f:
+    for n in nationPrint:
+        f.write(n)
+print("\nData written to Spotify_GenresMostPopularCountry.txt.")
+
+# Find the most popular country
+genrePrint = []
+for g in genreTop50:
+    country_count = {}
+    for node, data in GCC.nodes(data=True):
+        chart_hits = data.get('chart_hits')
+        if chart_hits and (str(g) in str(data.get('genres')) or str(g) == "all music"):
+            hits_list = ast.literal_eval(chart_hits)
+            for hit in hits_list:
+                country = hit.split()[0].strip().lower()  # Extract the country code
+                if country in country_count:
+                    country_count[country] += 1
+                else:
+                    country_count[country] = 1
+    most_common_country = max(country_count, key=country_count.get)
+    if str(g) != "all music":
+        genrePrint.append(f'The country with the most {g} songs is {most_common_country}.\n')
+    else:
+        genrePrint.append(f'\nThe most popular country is {most_common_country}.\n')
+with open("Spotify_MostPopularGenresByCountry.txt", "w", encoding='utf-8') as f:
+    for g in genrePrint:
+        f.write(g)
+print("Data written to Spotify_MostPopularGenresByCountry.txt.")
+
+# Apply Canada and USA's top 50 genres to a file
+with open("Spotify_Top50Genres_CA.txt", "w", encoding='utf-8') as f:
+    i = 1
+    for n in genreTop50CA:
+        f.write(f"Genre #{i}: {n}\n")
+        i += 1
+print("\nTop 50 most popular genres in Canada written to Spotify_Top50Genres_CA.txt.")
+with open("Spotify_Top50Genres_US.txt", "w", encoding='utf-8') as f:
+    i = 1
+    for n in genreTop50US:
+        f.write(f"Genre #{i}: {n}\n")
+        i += 1
+print("Top 50 most popular genres in the United States written to Spotify_Top50Genres_US.txt.")
+ca_set = set(genreTop50CA)
+us_set = set(genreTop50US)
+commonGenres = ca_set & us_set
+with open("Spotify_CommonGenres_CAUS.txt", "w", encoding='utf-8') as f:
+    for n in commonGenres:
+        f.write(f"{n}\n")
+print("Common popular genres between Canada and the United States written to Spotify_CommonGenres_CAUS.txt.")
 
 # Finding the Degree Distribution
 degrees = GCC.degree()
@@ -361,9 +434,9 @@ rounded_node_betweenness_scores = {node: round(score, 8) for node, score in node
 # Sort the nodes by their rounded node betweenness scores in descending order
 sorted_nodes = sorted(rounded_node_betweenness_scores.items(), key=lambda x: x[1], reverse=True)
 
-# Save the top 20 nodes to a text file
+# Save the top 50 nodes to a text file
 with open("Spotify_NodeBetweenness.txt", "w", encoding='utf-8') as f:
-    for node, score in sorted_nodes[:20]:
+    for node, score in sorted_nodes[:50]:
         # Look up the artist name using the GCC graph
         artist_name = GCC.nodes[node]['name']
         f.write(f"{artist_name}: {score}\n")
@@ -379,9 +452,9 @@ rounded_edge_betweenness_scores = {edge: round(score, 8) for edge, score in edge
 # Sort the edges by their rounded edge betweenness scores in descending order
 sorted_edges = sorted(rounded_edge_betweenness_scores.items(), key=lambda x: x[1], reverse=True)
 
-# Save the top 20 edges to a text file
+# Save the top 50 edges to a text file
 with open("Spotify_EdgeBetweenness.txt", "w", encoding='utf-8') as f:
-    for edge, score in sorted_edges[:20]:
+    for edge, score in sorted_edges[:50]:
         # Look up the artist names using the GCC graph
         artist1 = GCC.nodes[edge[0]]['name']
         artist2 = GCC.nodes[edge[1]]['name']
@@ -389,62 +462,66 @@ with open("Spotify_EdgeBetweenness.txt", "w", encoding='utf-8') as f:
 
 print("Edge betweenness scores written to Spotify_EdgeBetweenness.txt.")
 
-# Using the louvain communities method to find communities.
+# Using the louvain communities method and greedy modularity algorithm to find communities.
 # Girvan-Newman method was not working with such a large network.
-partitions = list(nx.community.louvain_communities(GCC))
+def communityDefiner(partitions, fileName):
+    if len(partitions) == 0:
+        print("The Louvain partitions algorithm didn't return any communities.")
+    else:
+        # Get the community sizes
+        community_sizes = [len(c) for c in partitions]
+        # Sort the community sizes in descending order
+        community_sizes.sort(reverse=True)
+        # find the most famous artist in each community
+        most_famous_artists = []
+        most_famous_countries = []
+        country_count = {}
 
-if len(partitions) == 0:
-    print("The Louvain partitions algorithm didn't return any communities.")
-else:
-    # Get the community sizes
-    community_sizes = [len(c) for c in partitions]
-    # Sort the community sizes in descending order
-    community_sizes.sort(reverse=True)
-    # find the most famous artist in each community
-    most_famous_artists = []
-    most_famous_countries = []
-    country_count = {}
+        for community in partitions:
+            max_popularity = 0
+            most_famous_artist = None
+            most_famous_country = None
+            for artist in community:
+                if 'popularity' in GCC.nodes[artist] and GCC.nodes[artist]['popularity'] > max_popularity:
+                    max_popularity = GCC.nodes[artist]['popularity']
+                    most_famous_artist = GCC.nodes[artist]['name']
 
-    for community in partitions:
-        max_popularity = 0
-        most_famous_artist = None
-        most_famous_country = None
-        for artist in community:
-            if 'popularity' in GCC.nodes[artist] and GCC.nodes[artist]['popularity'] > max_popularity:
-                max_popularity = GCC.nodes[artist]['popularity']
-                most_famous_artist = GCC.nodes[artist]['name']
+                # find the most famous country in each community
+                if 'chart_hits' in GCC.nodes[artist] and GCC.nodes[artist]['chart_hits'] is not None:
+                    charts = GCC.nodes[artist]['chart_hits']
+                    if len(charts) > 0:
+                        hits_list = ast.literal_eval(GCC.nodes[artist]['chart_hits'])
+                        for hit in hits_list:
+                            country = hit.split()[0].strip().lower()  # Extract the country code
+                            if country in country_count:
+                                country_count[country] += 1
+                            else:
+                                country_count[country] = 1
 
-            # find the most famous country in each community
-            if 'chart_hits' in GCC.nodes[artist] and GCC.nodes[artist]['chart_hits'] is not None:
-                charts = GCC.nodes[artist]['chart_hits']
-                if len(charts) > 0:
-                    hits_list = ast.literal_eval(GCC.nodes[artist]['chart_hits'])
-                    for hit in hits_list:
-                        country = hit.split()[0].strip().lower()  # Extract the country code
-                        if country in country_count:
-                            country_count[country] += 1
-                        else:
-                            country_count[country] = 1
-
-        most_common_country = max(country_count, key=country_count.get)
-        most_famous_countries.append(most_common_country)
-        most_famous_artists.append(most_famous_artist)
-
-        # single target shortest path for each community's top artist
-        # for famous_artist in most_famous_artists:
-        #     famous_artist_shortest_paths = nx.single_source_shortest_path(GCC, GCC.nodes[famous_artist])
-        #     print(f"Shortest paths for {famous_artist}: {famous_artist_shortest_paths}")
+            most_common_country = max(country_count, key=country_count.get)
+            most_famous_countries.append(most_common_country)
+            most_famous_artists.append(most_famous_artist)
 
         # Print the sizes of all communities
-    with open('Spotify_Communities.txt', 'w') as f:
-        f.write("Sizes of Top 10 communities:\n")
-        for i in range(min(10, len(community_sizes))):
-            f.write(
-                f"Community {i + 1}: {community_sizes[i]} nodes | Most famous artist: {most_famous_artists[i]} | Most famous country: {most_famous_countries[i]}\n")
-        f.write(f"\nTotal Communities: {len(community_sizes)}")
-    print("\nCommunities written to Spotify_Communities.txt.")
-
-
+        inputtedArtists = []
+        with open(fileName, 'w') as f:
+            f.write("Sizes of Top 10 communities:\n")
+            i = 0
+            j = 0
+            while j != 10:
+                if str(most_famous_artists[i]) in str(inputtedArtists):
+                    i += 1
+                else:
+                    f.write(f"Community {j + 1}: {community_sizes[i]} nodes | Most famous artist: {most_famous_artists[i]} | Most famous country: {most_famous_countries[i]}\n")
+                    i += 1
+                    j += 1
+                    inputtedArtists.append(most_famous_artists[i])
+            f.write(f"\nTotal Communities: {len(community_sizes)}")
+        print(f"\nCommunities written to {fileName}")
+louvainPartitions = list(nx.community.louvain_communities(GCC))
+communityDefiner(louvainPartitions, 'Spotify_Louvain_Communities.txt')
+kCliquePartitions = list(nx.community.k_clique_communities(GCC, 6))
+communityDefiner(kCliquePartitions, 'Spotify_K_Clique_Communities.txt')
 # Calculate the total number of genres
 genre_count = 0
 chart_hits_count = 0

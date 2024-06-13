@@ -1,0 +1,13 @@
+Sizes of Top 10 communities:
+Community 1: 767 nodes | Most famous artist: Bad Bunny | Most famous country: do
+Community 2: 149 nodes | Most famous artist: Marília Mendonça | Most famous country: do
+Community 3: 91 nodes | Most famous artist: Arijit Singh | Most famous country: do
+Community 4: 68 nodes | Most famous artist: Ninho | Most famous country: do
+Community 5: 56 nodes | Most famous artist: Baby Gang | Most famous country: do
+Community 6: 33 nodes | Most famous artist: BHZ | Most famous country: do
+Community 7: 25 nodes | Most famous artist: David Guetta | Most famous country: do
+Community 8: 24 nodes | Most famous artist: White 2115 | Most famous country: do
+Community 9: 19 nodes | Most famous artist: 3robi | Most famous country: do
+Community 10: 17 nodes | Most famous artist: Lazza | Most famous country: nl
+
+Total Communities: 139

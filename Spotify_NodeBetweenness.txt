@@ -1,20 +1,20 @@
-starRo: 0.10111481
-Kylie Minogue: 0.10095708
-P3: 0.10083166
-Dappy: 0.10008856
-Nine Chen: 0.10007029
-Deys: 0.09587114
-Black Coffee: 0.0943428
-Lukas Graham: 0.0727018
-Kamaliya: 0.0699045
-T.I.: 0.06968372
-Julia Wu: 0.06873828
-Yellow Claw: 0.05305739
-Alexis y Fido: 0.05263097
-R3HAB: 0.05061443
-Revol: 0.04762133
-David Guetta: 0.04525322
-Quebonafide: 0.0439754
-Diplo: 0.03978271
-Alex Christensen: 0.03044644
-婁峻碩: 0.02836505
+Twopee Southside: 0.10131182
+Ludacris: 0.10071675
+Himesh Reshammiya: 0.10045492
+Toddla T: 0.10043127
+DJ Cleo: 0.10028456
+16 Typh: 0.1000623
+Highhot: 0.08086748
+BT: 0.07808518
+Jay Park: 0.07619412
+David Guetta: 0.07362645
+Major Lazer: 0.07306225
+HHP: 0.06580585
+Mike Candys: 0.05810509
+Tiësto: 0.05435342
+RAP VIỆT: 0.04537166
+Snoop Dogg: 0.0445878
+Clean Bandit: 0.04404596
+INNA: 0.03285138
+Badshah: 0.03248588
+MIN: 0.0306385

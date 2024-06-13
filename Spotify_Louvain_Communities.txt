@@ -1,0 +1,13 @@
+Sizes of Top 10 communities:
+Community 1: 24440 nodes | Most famous artist: BTS | Most famous country: lt
+Community 2: 9091 nodes | Most famous artist: Red Hot Chili Peppers | Most famous country: lt
+Community 3: 6642 nodes | Most famous artist: Revel Day | Most famous country: lt
+Community 4: 4943 nodes | Most famous artist: Bolaget | Most famous country: lt
+Community 5: 4276 nodes | Most famous artist: The Longest Johns | Most famous country: lt
+Community 6: 3350 nodes | Most famous artist: Maria Lamuela | Most famous country: lt
+Community 7: 3282 nodes | Most famous artist: Pat Benatar | Most famous country: lt
+Community 8: 3020 nodes | Most famous artist: Ismael Rivera | Most famous country: lt
+Community 9: 2929 nodes | Most famous artist: Dan García | Most famous country: lt
+Community 10: 2684 nodes | Most famous artist: LEOWI | Most famous country: lt
+
+Total Communities: 118

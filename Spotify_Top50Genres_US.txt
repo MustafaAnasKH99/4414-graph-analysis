@@ -1,0 +1,50 @@
+Genre #1: pop
+Genre #2: dance pop
+Genre #3: rap
+Genre #4: pop rap
+Genre #5: trap
+Genre #6: hip hop
+Genre #7: uk pop
+Genre #8: post-teen pop
+Genre #9: electropop
+Genre #10: contemporary country
+Genre #11: country
+Genre #12: modern rock
+Genre #13: rock
+Genre #14: country road
+Genre #15: pop rock
+Genre #16: atl hip hop
+Genre #17: gangster rap
+Genre #18: neo mellow
+Genre #19: alt z
+Genre #20: indie poptimism
+Genre #21: underground hip hop
+Genre #22: metropopolis
+Genre #23: adult standards
+Genre #24: hip pop
+Genre #25: indie pop
+Genre #26: modern country rock
+Genre #27: lounge
+Genre #28: art pop
+Genre #29: chicago rap
+Genre #30: cali rap
+Genre #31: indie rock
+Genre #32: hollywood
+Genre #33: country pop
+Genre #34: conscious hip hop
+Genre #35: neo soul
+Genre #36: indietronica
+Genre #37: progressive electro house
+Genre #38: dirty south rap
+Genre #39: canadian pop
+Genre #40: trap queen
+Genre #41: miami hip hop
+Genre #42: soul
+Genre #43: talent show
+Genre #44: easy listening
+Genre #45: alternative r&b
+Genre #46: progressive house
+Genre #47: alternative hip hop
+Genre #48: memphis hip hop
+Genre #49: brill building pop
+Genre #50: boy band
