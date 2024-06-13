@@ -430,6 +430,11 @@ else:
         most_famous_countries.append(most_common_country)
         most_famous_artists.append(most_famous_artist)
 
+        # single target shortest path for each community's top artist
+        # for famous_artist in most_famous_artists:
+        #     famous_artist_shortest_paths = nx.single_source_shortest_path(GCC, GCC.nodes[famous_artist])
+        #     print(f"Shortest paths for {famous_artist}: {famous_artist_shortest_paths}")
+
         # Print the sizes of all communities
     with open('Spotify_Communities.txt', 'w') as f:
         f.write("Sizes of Top 10 communities:\n")
@@ -438,6 +443,7 @@ else:
                 f"Community {i + 1}: {community_sizes[i]} nodes | Most famous artist: {most_famous_artists[i]} | Most famous country: {most_famous_countries[i]}\n")
         f.write(f"\nTotal Communities: {len(community_sizes)}")
     print("\nCommunities written to Spotify_Communities.txt.")
+
 
 # Calculate the total number of genres
 genre_count = 0
@@ -472,3 +478,24 @@ with open('Spotify_AverageCountries.txt', 'w', encoding="utf-8") as f:
                 chart_hits = ast.literal_eval(GCC.nodes[artist]['chart_hits'])
                 average_charts = len(chart_hits) / chart_hits_count
                 f.write(f"{GCC.nodes[artist]['name']} has hits in {len(genres)} countries || Average (artist countries/total countries) is {average_charts}\n")
+
+# find the shortest paths between all the nodes
+shortest_paths = nx.all_pairs_shortest_path(GCC)
+with open('Spotify_ShortestPaths.txt', 'w', encoding='utf-8') as f:
+    for short_path in shortest_paths:
+        f.write(f"# Shortest paths to {GCC.nodes[short_path[0]]['name']}: {len(short_path[1])}\n")
+
+# -- KEEP | To fix later -- #
+# # find the shortest path between top artists
+# top_artists = [artist[0] for artist in pr_scores[:5]]
+# shortest_paths_top = {}
+# for artist in top_artists:
+#     shortest_paths_top[artist] = shortest_paths[artist]
+
+# # write the shortest paths to a text file
+# with open('Spotify_ShortestPaths.txt', 'w', encoding='utf-8') as f:
+#     for artist, paths in shortest_paths_top.items():
+#         f.write(f"Shortest paths for {GCC.nodes[artist]['name']}:\n")
+#         for target, path in paths.items():
+#             f.write(f"{GCC.nodes[target]['name']}: {path}\n")
+#         f.write("\n")

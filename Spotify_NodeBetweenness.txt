@@ -1,20 +1,20 @@
-Traditional: 0.13189181
-GDRN: 0.10022841
-Radistai Dj's: 0.10015157
-Hatari: 0.10010379
-Markus Krunegård: 0.10010302
-Kirka: 0.10007738
-Julien Bam: 0.10007347
-Alisky: 0.10006036
-Sammy: 0.0988729
-Hayley May: 0.07800254
-Benjamin Ingrosso: 0.06238477
-ELIF: 0.06087485
-Nio Garcia: 0.05662977
-Felo: 0.04785045
-Iceland Symphony Orchestra: 0.04651516
-Tom & Hills: 0.04572252
-Chris Brown: 0.04488979
-Anonimus: 0.03592042
-Kaskade: 0.03460163
-Quebonafide: 0.0341213
+starRo: 0.10111481
+Kylie Minogue: 0.10095708
+P3: 0.10083166
+Dappy: 0.10008856
+Nine Chen: 0.10007029
+Deys: 0.09587114
+Black Coffee: 0.0943428
+Lukas Graham: 0.0727018
+Kamaliya: 0.0699045
+T.I.: 0.06968372
+Julia Wu: 0.06873828
+Yellow Claw: 0.05305739
+Alexis y Fido: 0.05263097
+R3HAB: 0.05061443
+Revol: 0.04762133
+David Guetta: 0.04525322
+Quebonafide: 0.0439754
+Diplo: 0.03978271
+Alex Christensen: 0.03044644
+婁峻碩: 0.02836505
